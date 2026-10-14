@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" data-wf-page="672c9cc70d513a6484baa540" data-wf-site="6723f82a39dbcaee295ddc93" data-wf-status="1">
-<?php
-  $GLOBALS['cid'] = '2';
-  get_header();
-?>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Plus1me</title>
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="css/webflow-style.css" />
+  <style>
+    :root{--pink:#fd6579;--pink-light:#ff8fa0;--bg:#f3f2f8;--text-dark:#1f1730;--text-mid:#6c6778;--grad:linear-gradient(135deg,#fd6579 0%,#ff8fa0 100%);}
+    /* Navbar */
+    .navbar.w-nav{background:#fff!important;box-shadow:0 2px 16px rgba(253,101,121,.07)!important;border-bottom:1px solid rgba(253,101,121,.09)!important;font-family:'Plus Jakarta Sans','Inter',sans-serif!important;}
+    /* Brand */
+    .brand{text-decoration:none!important;display:flex!important;align-items:center!important;}
+    .brand-text{font-size:1.35rem!important;font-weight:800!important;background:var(--grad)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important;letter-spacing:-.5px!important;}
+    /* Nav links */
+    .w-nav-link{font-family:'Plus Jakarta Sans','Inter',sans-serif!important;font-weight:500!important;font-size:.88rem!important;color:var(--text-mid)!important;padding:7px 13px!important;border-radius:8px!important;transition:color .2s,background .2s!important;}
+    .w-nav-link:hover,.w-nav-link.w--current,.w-nav-link.active{color:var(--pink)!important;background:rgba(253,101,121,.06)!important;}
+    /* Coming Soon button */
+    .button.w-button{background:var(--grad)!important;color:#fff!important;border-radius:50px!important;font-weight:700!important;font-size:.88rem!important;padding:9px 20px!important;box-shadow:0 3px 14px rgba(253,101,121,.35)!important;border:none!important;}
 
+    /* Mobile menu (replaces Webflow JS) */
+    .navbar.w-nav{position:relative;z-index:100;}
+    .w-nav-button{cursor:pointer;user-select:none;}
+    @media screen and (max-width:991px){
+      .navbar.nav-open .w-nav-menu{display:flex!important;flex-direction:column;align-items:stretch;gap:4px;
+        position:absolute;top:100%;left:0;right:0;background:#fff;padding:12px 5% 18px;
+        box-shadow:0 12px 24px rgba(31,23,48,.08);}
+      .navbar.nav-open .w-nav-menu .w-nav-link{display:block;}
+      .navbar.nav-open .w-nav-menu .button{align-self:center;margin-top:6px;}
+      .navbar.nav-open .w-nav-button{background:rgba(253,101,121,.08);border-radius:8px;}
+    }
+  </style>
+  <script>document.documentElement.className+=' w-mod-js'+(('ontouchstart' in window)?' w-mod-touch':'');</script>
 <style>
   :root {
     --pink:      #fd6579;
@@ -45,9 +76,26 @@
 
   @media(max-width:780px){.about-grid{grid-template-columns:1fr!important;}}
 </style>
-
+</head>
 <body class="body-2">
-  <div class="about-page">
+<div data-collapse="medium"
+  role="banner" class="navbar w-nav">
+  <div class="container w-container">
+    <nav role="navigation" class="nav-menu w-nav-menu">
+			<a href="index.html" class="nav-link w-nav-link">Home</a>
+			<a href="about.html" class="nav-link-2 w-nav-link active" aria-current="page">About</a>
+      <a href="contact.html" class="nav-link-3 w-nav-link">Contact</a>
+			<a href="help.html" class="nav-link-4 w-nav-link">Help</a>
+			<a href="age-policy.html" class="nav-link-5 w-nav-link">Age Policy</a>
+			<a href="#" class="button w-button">Coming Soon ✨</a>
+		</nav>
+    <div class="menu-button w-nav-button">
+      <div class="icon-2 w-icon-nav-menu"></div>
+    </div>
+  </div>
+</div>
+
+<div class="about-page">
     <div class="about-top">
       <h2>About Us!</h2>
       <p>We understand that meaningful connections are at the heart of human experience. Our platform is designed to bring together individuals from diverse backgrounds, fostering authentic relationships that resonate with shared values and interests. Whether you're looking for friendship, romance, or a supportive community, we're here to help you discover connections that last.</p>
@@ -80,9 +128,16 @@
   </div>
 
   <div class="page-footer">© 2026 Plus1me. All Rights Reserved.</div>
-</body>
 
-<footer>
-  <?php wp_footer(); ?>
-</footer>
+<script>
+  (function(){
+    var nav=document.querySelector('.navbar'),btn=nav&&nav.querySelector('.w-nav-button');
+    if(!btn)return;
+    btn.setAttribute('role','button');btn.setAttribute('tabindex','0');btn.setAttribute('aria-label','Menu');
+    function t(){var o=nav.classList.toggle('nav-open');btn.setAttribute('aria-expanded',o);}
+    btn.addEventListener('click',t);
+    btn.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+  })();
+</script>
+</body>
 </html>
