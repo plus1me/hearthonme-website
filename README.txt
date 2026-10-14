@@ -1,4 +1,4 @@
-Plus1me - static HTML website
+HeartOnMe - static HTML website
 =============================
 Plain HTML/CSS, no PHP or WordPress needed.
 
