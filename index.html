@@ -62,53 +62,59 @@
   @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
   /* HOME LAYOUT */
-  html,body{height:100%;overflow:hidden;}
+  html,body{height:100%;}
+  body{background:#fdf7f9;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;}
+  body > .navbar,body > .page-footer{flex-shrink:0;}
   .home-wrap{
-    height:calc(100vh - 44px);
-    display:flex;flex-direction:row;align-items:center;
-    padding:0 5%;gap:32px;background:var(--bg);
-    overflow:hidden;
+    position:relative;overflow:hidden;isolation:isolate;
+    flex:1 1 auto;min-height:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:2vh 5% 9vh;
+    background:radial-gradient(ellipse at 50% 35%,#fffafc 0%,#fdf2f5 70%);
   }
-  .hero-content{flex:1;max-width:480px;}
-  .hero-badge{
-    display:inline-flex;align-items:center;gap:7px;
-    background:rgba(253,101,121,.08);border:1px solid rgba(253,101,121,.2);
-    padding:5px 12px;border-radius:50px;font-size:.74rem;font-weight:600;color:var(--pink);margin-bottom:12px;
-  }
-  .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 1.5s infinite;flex-shrink:0;display:inline-block;}
-  h1{font-size:clamp(1.6rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-1.2px;margin-bottom:10px;}
-  h1 .hl{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .hero-sub{font-size:.88rem;line-height:1.6;color:var(--text-mid);margin-bottom:18px;max-width:380px;}
+  .hero-content{position:relative;z-index:2;max-width:760px;}
+
+  .logo-mark{width:clamp(56px,min(9vw,12vh),118px);height:auto;display:block;margin:0 auto 6px;animation:floatY 5s ease-in-out infinite;}
+  .wordmark{font-size:clamp(1.15rem,min(2.4vw,3.4vh),2rem);font-weight:700;letter-spacing:-.5px;color:var(--text-dark);margin-bottom:clamp(10px,4.5vh,52px);}
+  .wordmark span{color:var(--pink);}
+
+  h1{font-size:clamp(1.9rem,min(6vw,8.2vh),4.6rem);font-weight:800;line-height:1.02;letter-spacing:-.04em;margin-bottom:clamp(10px,2.6vh,22px);}
+  h1 .hl{display:block;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-bottom:.08em;}
+  .hero-sub{font-size:clamp(.92rem,min(1.5vw,2.1vh),1.2rem);line-height:1.55;color:var(--text-mid);max-width:25em;margin:0 auto clamp(14px,3.6vh,32px);}
   .btn-primary{
-    display:inline-flex;align-items:center;gap:7px;
-    background:var(--grad);color:#fff;padding:11px 24px;border-radius:50px;
-    font-weight:700;font-size:.88rem;border:none;cursor:pointer;font-family:inherit;
-    box-shadow:0 6px 22px rgba(253,101,121,.38);transition:transform .2s,box-shadow .2s;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--grad);color:#fff;padding:clamp(11px,2vh,16px) 48px;border-radius:50px;
+    font-weight:700;font-size:1.05rem;border:none;cursor:pointer;font-family:inherit;
+    box-shadow:0 12px 30px rgba(253,101,121,.32);transition:transform .2s,box-shadow .2s;
     text-decoration:none;
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(253,101,121,.48);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(253,101,121,.42);}
 
-  /* HERO VISUAL */
-  .hero-visual{flex:1;display:flex;justify-content:flex-end;align-items:center;position:relative;height:100%;}
-  .hero-img{max-height:85vh;max-width:100%;object-fit:contain;display:block;}
-  .hero-emoji{position:absolute;top:8%;left:0;width:64px;animation:floatY 3s ease-in-out infinite;}
-  .hero-bell{position:absolute;bottom:12%;right:0;width:50px;animation:floatY 3.5s ease-in-out infinite reverse;}
+  /* BACKGROUND DECOR */
+  .bg-waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:42%;z-index:0;pointer-events:none;}
+  .bg-line{position:absolute;top:6%;right:-6%;width:min(46vw,620px);height:auto;z-index:0;pointer-events:none;opacity:.9;}
+  .float-heart{position:absolute;z-index:1;color:#f7a9b6;opacity:.75;animation:floatY 4s ease-in-out infinite;pointer-events:none;}
+  .float-heart svg{display:block;width:100%;height:auto;}
+  .fh1{width:34px;top:30%;left:18%;}
+  .fh2{width:30px;top:66%;right:20%;animation-delay:-2s;}
+  .fh3{width:16px;top:18%;right:30%;opacity:.45;animation-delay:-1s;}
 
   /* FOOTER */
   .page-footer{
     text-align:center;font-size:.74rem;color:var(--text-light);
-    padding:8px 5%;border-top:1px solid rgba(253,101,121,.07);background:var(--bg);
+    padding:10px 5%;background:#fbe9ee;position:relative;
   }
   .page-footer a{color:var(--pink);text-decoration:none;}
 
   @media(max-width:780px){
-    .home-wrap{flex-direction:column;justify-content:center;text-align:center;padding:20px 5%;gap:16px;}
-    .hero-sub{margin:0 auto 14px;}
-    .hero-visual{justify-content:center;height:auto;}
-    .hero-img{max-height:40vh;}
-    .hero-emoji{width:44px;}
-    .hero-bell{width:36px;}
+    .home-wrap{padding:2vh 6% 8vh;}
+    .fh1{left:6%;top:24%;}
+    .fh2{right:8%;top:74%;}
+    .bg-line{width:80vw;right:-30%;}
+    .btn-primary{padding:clamp(11px,1.8vh,14px) 40px;}
   }
+  @media(max-height:480px){body{height:auto;min-height:100vh;overflow:auto;}.home-wrap{padding:24px 5% 70px;}}
+  @media(prefers-reduced-motion:reduce){.logo-mark,.float-heart{animation:none;}}
 </style>
 </head>
 <body class="body">
@@ -130,19 +136,34 @@
   </div>
 </div>
 
-<div class="home-wrap">
+<main class="home-wrap">
+    <svg class="bg-line" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+      <path d="M560 40C430-10 300 60 330 190c18 78 120 96 160 170 46 86-20 190-150 220" stroke="#f6c9d2" stroke-width="2"/>
+      <path d="M600 120C500 90 420 150 440 240c14 64 90 90 110 150" stroke="#f9dbe1" stroke-width="2"/>
+    </svg>
+    <svg class="bg-waves" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120C240 40 420 150 720 210s520 20 720-60V400H0z" fill="#fbe3e9"/>
+      <path d="M0 230C260 170 470 300 760 300s470-90 680-70V400H0z" fill="#f9d5de"/>
+      <path d="M0 320c300-50 520 40 820 30s420-60 620-40V400H0z" fill="#fbe9ee"/>
+    </svg>
+    <span class="float-heart fh1"><svg viewBox="0 0 24 22" aria-hidden="true"><path fill="currentColor" d="M12 21s-8.5-5.2-10.6-10.4C-.1 6.6 2.3 2 6.6 2 9 2 10.9 3.4 12 5.2 13.1 3.4 15 2 17.4 2c4.3 0 6.7 4.6 5.2 8.6C20.5 15.8 12 21 12 21z"/></svg></span>
+    <span class="float-heart fh2"><svg viewBox="0 0 24 22" aria-hidden="true"><path fill="currentColor" d="M12 21s-8.5-5.2-10.6-10.4C-.1 6.6 2.3 2 6.6 2 9 2 10.9 3.4 12 5.2 13.1 3.4 15 2 17.4 2c4.3 0 6.7 4.6 5.2 8.6C20.5 15.8 12 21 12 21z"/></svg></span>
+    <span class="float-heart fh3"><svg viewBox="0 0 24 22" aria-hidden="true"><path fill="currentColor" d="M12 21s-8.5-5.2-10.6-10.4C-.1 6.6 2.3 2 6.6 2 9 2 10.9 3.4 12 5.2 13.1 3.4 15 2 17.4 2c4.3 0 6.7 4.6 5.2 8.6C20.5 15.8 12 21 12 21z"/></svg></span>
+
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span> Start Your Journey to Love</div>
-      <h1>Find your perfect match. <span class="hl">Start love story today.</span></h1>
-      <p class="hero-sub">Get started today and embark on your journey to love and happiness.</p>
+      <svg class="logo-mark" viewBox="0 0 120 100" fill="none" role="img" aria-label="HeartOnMe logo">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fd6579"/><stop offset="1" stop-color="#ff8fa0"/></linearGradient>
+        </defs>
+        <path d="M60 90C24 66 9 48 9 31 9 17 20 7 33 7c11 0 20 7 27 18" stroke="url(#lg1)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M60 25c7-11 16-18 27-18 13 0 24 10 24 24 0 17-15 35-51 59" stroke="url(#lg1)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+      </svg>
+      <div class="wordmark">Heart<span>OnMe</span></div>
+      <h1>Real People.<span class="hl">Meaningful Dates.</span></h1>
+      <p class="hero-sub">Meet in real life, create genuine connections and make every date count.</p>
       <a href="#" class="btn-primary">Coming Soon</a>
     </div>
-    <div class="hero-visual">
-      <img class="hero-emoji" src="images/hero-emoji-chat.png" loading="lazy" alt="" />
-      <img class="hero-img" src="images/hero-main-image.webp" loading="lazy" alt="HeartOnMe App" />
-      <img class="hero-bell" src="images/hero-bell.png" loading="lazy" alt="" />
-    </div>
-  </div>
+  </main>
   <div class="page-footer">© 2026 HeartOnMe. All Rights Reserved.</div>
 
 <script>
