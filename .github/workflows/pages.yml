@@ -1,1 +1,78 @@
-
+{
+ "name": "Publish website and web app",
+ "on": {
+  "push": {
+   "branches": [
+    "main"
+   ]
+  },
+  "workflow_dispatch": {}
+ },
+ "permissions": {
+  "contents": "read",
+  "pages": "write",
+  "id-token": "write"
+ },
+ "concurrency": {
+  "group": "pages",
+  "cancel-in-progress": true
+ },
+ "jobs": {
+  "build": {
+   "runs-on": "ubuntu-latest",
+   "steps": [
+    {
+     "uses": "actions/checkout@v4"
+    },
+    {
+     "uses": "actions/setup-node@v4",
+     "with": {
+      "node-version": 22
+     }
+    },
+    {
+     "name": "Build web app (if webapp/ exists)",
+     "if": "hashFiles('webapp/package.json') != ''",
+     "working-directory": "webapp",
+     "run": "if [ -f package-lock.json ]; then npm ci --legacy-peer-deps; else npm install --legacy-peer-deps; fi && npx vite build",
+     "env": {
+      "VITE_BASE": "/app/",
+      "VITE_FIREBASE_API_KEY": "${{ vars.VITE_FIREBASE_API_KEY }}",
+      "VITE_FIREBASE_APP_ID": "${{ vars.VITE_FIREBASE_APP_ID }}",
+      "VITE_FIREBASE_AUTH_DOMAIN": "${{ vars.VITE_FIREBASE_AUTH_DOMAIN }}",
+      "VITE_FIREBASE_PROJECT_ID": "${{ vars.VITE_FIREBASE_PROJECT_ID }}",
+      "VITE_FIREBASE_STORAGE_BUCKET": "${{ vars.VITE_FIREBASE_STORAGE_BUCKET }}",
+      "VITE_FIREBASE_MESSAGING_SENDER_ID": "${{ vars.VITE_FIREBASE_MESSAGING_SENDER_ID }}",
+      "VITE_FUNCTIONS_URL": "${{ vars.VITE_FUNCTIONS_URL }}",
+      "VITE_DATE_CREDITS_URL": "${{ vars.VITE_DATE_CREDITS_URL }}",
+      "VITE_GOOGLE_MAPS_API_KEY": "${{ vars.VITE_GOOGLE_MAPS_API_KEY }}"
+     }
+    },
+    {
+     "name": "Assemble site",
+     "run": "mkdir -p _site && cp *.html CNAME _site/ && cp -r css images _site/ && if [ -d webapp/dist ]; then cp -r webapp/dist _site/app; fi"
+    },
+    {
+     "uses": "actions/upload-pages-artifact@v3",
+     "with": {
+      "path": "_site"
+     }
+    }
+   ]
+  },
+  "deploy": {
+   "needs": "build",
+   "runs-on": "ubuntu-latest",
+   "environment": {
+    "name": "github-pages",
+    "url": "${{ steps.deployment.outputs.page_url }}"
+   },
+   "steps": [
+    {
+     "id": "deployment",
+     "uses": "actions/deploy-pages@v4"
+    }
+   ]
+  }
+ }
+}
