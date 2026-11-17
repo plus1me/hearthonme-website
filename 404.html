@@ -44,16 +44,6 @@
     }
   </style>
   <script>document.documentElement.className+=' w-mod-js'+(('ontouchstart' in window)?' w-mod-touch':'');</script>
-  <script>
-    // Deep links into the web app (e.g. /app/matches after a reload) land here on GitHub Pages.
-    // Send them to the app, which restores the path.
-    (function () {
-      var p = location.pathname;
-      if (p.indexOf('/app/') === 0 && p !== '/app/') {
-        location.replace('/app/?redirect=' + encodeURIComponent(p.slice(4) + location.search + location.hash));
-      }
-    })();
-  </script>
   <style>
     body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#fdf7f9;color:#1f1730;font-family:'Plus Jakarta Sans','Inter',sans-serif;}
     .nf{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
@@ -71,10 +61,10 @@
 <body class="body">
   <main class="nf">
     <h1>This page doesn't exist.</h1>
-    <p>The link may be old or mistyped. Go back to the home page, or open the web app to see your matches and dates.</p>
+    <p>The link may be old or mistyped. Go back to the home page or check the FAQ.</p>
     <div class="row">
       <a class="main" href="/">Go to home page</a>
-      <a class="quiet" href="/app/">Open the web app</a>
+      <a class="quiet" href="/help.html">Read the FAQ</a>
     </div>
   </main>
   <div class="page-footer"><a class="pf-link" href="/privacy.html">Privacy Policy</a> · <a class="pf-link" href="/age-policy.html">Age Policy</a><br>© 2026 HeartOnMe. All Rights Reserved.</div>
