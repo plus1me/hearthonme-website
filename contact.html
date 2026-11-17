@@ -59,7 +59,7 @@
   body{font-family:'Plus Jakarta Sans','Inter',sans-serif!important;background:var(--bg)!important;color:var(--text-dark)!important;}
 
   .contact-page{
-    padding:120px 5% 60px!important;
+    padding:72px 5% 60px!important;
     max-width:600px!important;margin:0 auto!important;width:100%!important;
     display:flex!important;flex-direction:column!important;align-items:center!important;gap:20px!important;
     text-align:center!important;
@@ -76,13 +76,30 @@
     font-size:.95rem!important;color:var(--text-mid)!important;line-height:1.7!important;max-width:460px!important;
   }
   .contact-emoji{
-    width:120px!important;height:120px!important;object-fit:contain!important;margin:8px 0!important;
+    width:96px!important;height:96px!important;object-fit:contain!important;margin:0!important;
   }
+  .contact-steps{list-style:none!important;counter-reset:c;text-align:left!important;width:100%!important;max-width:520px!important;
+    background:#fff!important;border-radius:20px!important;padding:8px 24px!important;box-shadow:0 8px 28px rgba(31,23,48,.06)!important;}
+  .contact-steps li{counter-increment:c;display:grid!important;grid-template-columns:34px 1fr!important;gap:14px!important;padding:16px 0!important;
+    color:var(--text-mid)!important;line-height:1.55!important;font-size:.95rem!important;border-bottom:1px solid rgba(31,23,48,.07)!important;}
+  .contact-steps li:last-child{border-bottom:0!important;}
+  .contact-steps li::before{content:counter(c);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;color:var(--pink);border:2px solid var(--pink);font-size:.9rem;}
+  .contact-steps li:last-child::before{background:var(--grad);color:#fff;border-color:transparent;}
+  .contact-steps strong{color:var(--text-dark)!important;font-weight:700!important;display:block;}
+  .contact-actions{display:flex!important;flex-wrap:wrap!important;gap:12px!important;justify-content:center!important;margin-top:8px!important;}
+  .contact-btn{display:inline-flex!important;align-items:center!important;min-height:50px!important;padding:0 28px!important;border-radius:50px!important;
+    font-weight:700!important;text-decoration:none!important;background:var(--grad)!important;color:#fff!important;box-shadow:0 12px 28px rgba(253,101,121,.3)!important;}
+  .contact-btn.quiet{background:#fff!important;color:var(--text-dark)!important;border:2px solid rgba(31,23,48,.09)!important;box-shadow:none!important;}
+  .contact-btn:focus-visible{outline:3px solid #7c86d8!important;outline-offset:3px!important;}
+  .contact-note{font-size:.88rem!important;color:var(--text-light)!important;max-width:440px!important;line-height:1.6!important;}
   .page-footer{
     text-align:center!important;font-size:.78rem!important;color:var(--text-light)!important;
     padding:16px 5%!important;border-top:1px solid rgba(253,101,121,.07)!important;
     background:var(--bg)!important;margin-top:16px!important;
   }
+  .page-footer .pf-link{color:inherit!important;text-decoration:none!important;font-weight:600;}
+  .page-footer .pf-link:hover{color:#fd6579!important;}
 </style>
 </head>
 <body class="body">
@@ -92,11 +109,12 @@
     <a href="index.html" class="brand w-nav-brand" aria-label="HeartOnMe home"><span class="brand-text">HeartOnMe</span></a>
     <nav role="navigation" class="nav-menu w-nav-menu">
 			<a href="index.html" class="nav-link w-nav-link">Home</a>
+			<a href="web-app.html" class="nav-link-6 w-nav-link">Web App</a>
 			<a href="about.html" class="nav-link-2 w-nav-link">About</a>
       <a href="contact.html" class="nav-link-3 w-nav-link active" aria-current="page">Contact</a>
 			<a href="help.html" class="nav-link-4 w-nav-link">Help</a>
 			<a href="age-policy.html" class="nav-link-5 w-nav-link">Age Policy</a>
-			<a href="#" class="button w-button">Coming Soon ✨</a>
+			<a href="app/" class="button w-button">Open Web App</a>
 		</nav>
     <div class="menu-button w-nav-button">
       <div class="icon-2 w-icon-nav-menu"></div>
@@ -104,13 +122,26 @@
   </div>
 </div>
 
-<div class="contact-page">
-    <h2 class="contact-title">Your feedback Is <span>important to us!</span></h2>
-    <p class="contact-sub">We're here to help! If you have questions, feedback, or need assistance, reach out to us. Our support team is ready to make your experience seamless.</p>
+<main class="contact-page">
     <img class="contact-emoji" src="images/contact-emoji.webp" loading="lazy" alt="" />
-  </div>
+    <h1 class="contact-title">We hear you <span>through the app.</span></h1>
+    <p class="contact-sub">Questions, feedback, a problem with a date or a report about another user: everything reaches our team through the Safety Center in the HeartOnMe web app. You can follow the status of your message there too.</p>
 
-  <div class="page-footer">© 2026 HeartOnMe. All Rights Reserved.</div>
+    <ol class="contact-steps">
+      <li><div><strong>Open the web app and log in.</strong> No account yet? Create one with your phone number.</div></li>
+      <li><div><strong>Go to My profile, then Safety center.</strong></div></li>
+      <li><div><strong>Choose a topic and describe what happened.</strong> For questions and feedback, pick Other. You can attach a screenshot.</div></li>
+      <li><div><strong>Tap Submit report.</strong> Your latest case and its status appear under Case status.</div></li>
+    </ol>
+
+    <div class="contact-actions">
+      <a class="contact-btn" href="help.html">Read the FAQ</a>
+    </div>
+
+    <p class="contact-note">Reporting a specific person? Open their match card, tap the menu and choose Block &amp; Report. They are blocked and unmatched right away.</p>
+  </main>
+
+  <div class="page-footer"><a class="pf-link" href="privacy.html">Privacy Policy</a> · <a class="pf-link" href="age-policy.html">Age Policy</a><br>© 2026 HeartOnMe. All Rights Reserved.</div>
 
 <script>
   (function(){

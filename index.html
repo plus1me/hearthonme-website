@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="_3sGerCRF1znYbbUOtR13Jb7Sf1SVMHehpIhL0uXACo" />
   <title>HeartOnMe</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="images/favicon.png" type="image/png" />
@@ -90,6 +89,11 @@
     text-decoration:none;
   }
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(253,101,121,.42);}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .btn-quiet{display:inline-flex;align-items:center;justify-content:center;padding:clamp(11px,2vh,16px) 32px;border-radius:50px;
+    font-weight:700;font-size:1.05rem;color:var(--text-dark);background:#fff;border:2px solid rgba(31,23,48,.09);text-decoration:none;transition:border-color .2s;}
+  .btn-quiet:hover{border-color:var(--pink);}
+  .hero-actions a:focus-visible{outline:3px solid #7c86d8;outline-offset:3px;}
 
   /* BACKGROUND DECOR */
   .bg-waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:42%;z-index:0;pointer-events:none;}
@@ -116,7 +120,8 @@
   }
   @media(max-height:480px){body{height:auto;min-height:100vh;overflow:auto;}.home-wrap{padding:24px 5% 70px;}}
   @media(prefers-reduced-motion:reduce){.logo-mark,.float-heart{animation:none;}}
-	
+  .page-footer .pf-link{color:inherit!important;text-decoration:none!important;font-weight:600;}
+  .page-footer .pf-link:hover{color:#fd6579!important;}
 </style>
 </head>
 <body class="body">
@@ -126,11 +131,12 @@
     <a href="index.html" class="brand w-nav-brand" aria-label="HeartOnMe home"><span class="brand-text">HeartOnMe</span></a>
     <nav role="navigation" class="nav-menu w-nav-menu">
 			<a href="index.html" class="nav-link w-nav-link active" aria-current="page">Home</a>
+			<a href="web-app.html" class="nav-link-6 w-nav-link">Web App</a>
 			<a href="about.html" class="nav-link-2 w-nav-link">About</a>
       <a href="contact.html" class="nav-link-3 w-nav-link">Contact</a>
 			<a href="help.html" class="nav-link-4 w-nav-link">Help</a>
 			<a href="age-policy.html" class="nav-link-5 w-nav-link">Age Policy</a>
-			<a href="#" class="button w-button">Coming Soon ✨</a>
+			<a href="app/" class="button w-button">Open Web App</a>
 		</nav>
     <div class="menu-button w-nav-button">
       <div class="icon-2 w-icon-nav-menu"></div>
@@ -163,10 +169,13 @@
       <div class="wordmark">Heart<span>OnMe</span></div>
       <h1>Your Heart, Your Pace.<span class="hl">Meet on Your Terms.</span></h1>
       <p class="hero-sub">Meet in real life, create genuine connections and make every date count.</p>
-      <a href="#" class="btn-primary">Coming Soon</a>
+      <div class="hero-actions">
+        <a href="app/" class="btn-primary">Open the web app</a>
+        <a href="web-app.html" class="btn-quiet">See how it works</a>
+      </div>
     </div>
   </main>
-  <div class="page-footer">© 2026 HeartOnMe. All Rights Reserved.</div>
+  <div class="page-footer"><a class="pf-link" href="privacy.html">Privacy Policy</a> · <a class="pf-link" href="age-policy.html">Age Policy</a><br>© 2026 HeartOnMe. All Rights Reserved.</div>
 
 <script>
   (function(){
